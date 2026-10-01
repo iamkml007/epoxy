@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artisan Epoxy — Premium Epoxy Resin Solutions</title>
+<meta name="description" content="Custom epoxy resin for river tables, floor coatings, countertops, art & industrial applications. Premium quality, expertly crafted.">
+<style>
+/* ============ RESET & BASE ============ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#0a0a1a;
+  --primary-light:#1a1a2e;
+  --accent:#e94560;
+  --accent-2:#ff6b9d;
+  --accent-hover:#c73650;
+  --gold:#ffd700;
+  --light:#f8f8fc;
+  --gray:#6c757d;
+  --gray-light:#e9ecef;
+  --white:#ffffff;
+  --gradient:linear-gradient(135deg,#667eea 0%,#764ba2 50%,#e94560 100%);
+  --gradient-2:linear-gradient(135deg,#f093fb 0%,#f5576c 100%);
+  --gradient-3:linear-gradient(135deg,#4facfe 0%,#00f2fe 100%);
+  --gradient-4:linear-gradient(135deg,#43e97b 0%,#38f9d7 100%);
+  --gradient-5:linear-gradient(135deg,#fa709a 0%,#fee140 100%);
+  --shadow-sm:0 4px 12px rgba(0,0,0,.06);
+  --shadow-md:0 10px 30px rgba(0,0,0,.1);
+  --shadow-lg:0 25px 60px rgba(0,0,0,.15);
+  --shadow-accent:0 20px 50px rgba(233,69,96,.25);
+  --radius:20px;
+  --transition:.4s cubic-bezier(.25,.8,.25,1);
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+  color:var(--primary);
+  line-height:1.6;
+  overflow-x:hidden;
+  background:var(--white);
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* Custom scrollbar */
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--light)}
+::-webkit-scrollbar-thumb{background:var(--gradient);border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+::selection{background:var(--accent);color:#fff}
+
+/* ============ LOADER ============ */
+.loader{
+  position:fixed;inset:0;
+  background:var(--primary);
+  z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .6s,visibility .6s;
+}
+.loader.hidden{opacity:0;visibility:hidden}
+.loader-ring{
+  width:70px;height:70px;
+  border:4px solid rgba(255,255,255,.1);
+  border-top-color:var(--accent);
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ============ SCROLL PROGRESS ============ */
+.progress-bar{
+  position:fixed;top:0;left:0;
+  height:3px;width:0;
+  background:var(--gradient);
+  z-index:1001;
+  transition:width .1s;
+  box-shadow:0 0 10px var(--accent);
+}
+
+/* ============ NAVIGATION ============ */
+nav{
+  position:fixed;top:0;width:100%;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  z-index:1000;
+  padding:1rem 5%;
+  display:flex;justify-content:space-between;align-items:center;
+  transition:all var(--transition);
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  padding:.7rem 5%;
+  background:rgba(255,255,255,.95);
+  box-shadow:var(--shadow-sm);
+  border-bottom-color:rgba(0,0,0,.04);
+}
+.logo{
+  font-size:1.6rem;font-weight:800;
+  background:var(--gradient);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  letter-spacing:-1px;
+  display:flex;align-items:center;gap:.5rem;
+}
+.logo-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--accent);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(233,69,96,.7)}
+  50%{box-shadow:0 0 0 10px rgba(233,69,96,0)}
+}
+.nav-links{display:flex;list-style:none;gap:2rem;align-items:center}
+.nav-links a{
+  font-weight:500;font-size:.95rem;
+  transition:color var(--transition);
+  position:relative;padding:.3rem 0;
+}
+.nav-links a:hover{color:var(--accent)}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:2px;
+  background:var(--accent);
+  transition:width var(--transition);
+}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  background:var(--gradient);color:#fff!important;
+  padding:.6rem 1.4rem!important;border-radius:50px;
+  font-weight:600;
+  transition:transform var(--transition),box-shadow var(--transition);
+}
+.nav-cta:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-accent);
+}
+.nav-cta::after{display:none!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+.hamburger span{
+  width:26px;height:3px;background:var(--primary);
+  border-radius:3px;transition:var(--transition);
+}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
+
+/* ============ BUTTONS ============ */
+.btn{
+  padding:1rem 2rem;
+  border-radius:50px;
+  font-weight:600;font-size:1rem;
+  transition:all var(--transition);
+  cursor:pointer;border:none;
+  display:inline-flex;align-items:center;gap:.5rem;
+  position:relative;overflow:hidden;
+}
+.btn::before{
+  content:'';position:absolute;
+  top:50%;left:50%;
+  width:0;height:0;
+  background:rgba(255,255,255,.2);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  transition:width .6s,height .6s;
+}
+.btn:hover::before{width:300px;height:300px}
+.btn-primary{background:#fff;color:var(--accent)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.btn-accent{background:var(--gradient);color:#fff;background-size:200% 200%}
+.btn-accent:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-accent);
+  background-position:100% 0;
+}
+.btn-outline{
+  background:transparent;color:#fff;
+  border:2px solid rgba(255,255,255,.7);
+}
+.btn-outline:hover{background:#fff;color:var(--accent)}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:8rem 5% 4rem;
+  position:relative;overflow:hidden;
+  background:
+    linear-gradient(135deg,rgba(10,10,26,.85) 0%,rgba(102,126,234,.75) 50%,rgba(233,69,96,.8) 100%),
+    url('https://images.unsplash.com/photo-1615529182904-14819c35db37?w=1920&q=80') center/cover no-repeat;
+  background-attachment:fixed;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M50 50v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM10 50v-4H8v4H4v2h4v4h2v-4h4v-2h-4zM10 20V0H8v4H4v2h4v4h2V6h4V4h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity:.6;
+  animation:bgMove 30s linear infinite;
+}
+@keyframes bgMove{
+  0%{background-position:0 0}
+  100%{background-position:80px 80px}
+}
+.blob{
+  position:absolute;border-radius:50%;
+  filter:blur(60px);opacity:.35;
+  pointer-events:none;
+}
+.blob-1{
+  width:400px;height:400px;
+  background:var(--accent-2);
+  top:-100px;right:-100px;
+  animation:float 8s ease-in-out infinite;
+}
+.blob-2{
+  width:300px;height:300px;
+  background:var(--gold);
+  bottom:-80px;left:10%;
+  animation:float 10s ease-in-out infinite reverse;
+}
+.blob-3{
+  width:250px;height:250px;
+  background:#4facfe;
+  top:40%;right:20%;
+  animation:float 12s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(30px,-30px) scale(1.05)}
+  66%{transform:translate(-20px,20px) scale(.95)}
+}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:750px;color:#fff;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.5rem 1.2rem;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:50px;
+  font-size:.85rem;font-weight:600;
+  margin-bottom:1.5rem;
+  animation:fadeInUp .8s ease both;
+}
+.hero-badge .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold);
+  animation:pulse 2s infinite;
+}
+.hero h1{
+  font-size:clamp(2.5rem,6vw,4.5rem);
+  font-weight:900;line-height:1.05;
+  letter-spacing:-2px;margin-bottom:1.5rem;
+}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line span{
+  display:block;
+  animation:slideUp .9s cubic-bezier(.25,.8,.25,1) both;
+}
+.hero h1 .line:nth-child(1) span{animation-delay:.2s}
+.hero h1 .line:nth-child(2) span{animation-delay:.4s;color:var(--gold)}
+.hero h1 .line:nth-child(3) span{animation-delay:.6s}
+@keyframes slideUp{
+  from{transform:translateY(110%)}
+  to{transform:translateY(0)}
+}
+.hero p{
+  font-size:1.15rem;margin-bottom:2rem;
+  opacity:.95;max-width:600px;
+  animation:fadeInUp .8s .8s both;
+}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.cta-buttons{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  animation:fadeInUp .8s 1s both;
+}
+.hero-stats{
+  display:flex;gap:3rem;margin-top:4rem;
+  flex-wrap:wrap;
+  animation:fadeInUp .8s 1.2s both;
+}
+.stat h3{
+  font-size:2.5rem;font-weight:900;
+  background:linear-gradient(135deg,#fff,var(--gold));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.stat p{font-size:.9rem;opacity:.85;margin:0}
+.scroll-down{
+  position:absolute;bottom:2rem;left:50%;
+  transform:translateX(-50%);
+  color:#fff;font-size:.8rem;
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  animation:fadeInUp 1s 1.5s both;
+}
+.scroll-down .mouse{
+  width:26px;height:42px;
+  border:2px solid rgba(255,255,255,.6);
+  border-radius:20px;position:relative;
+}
+.scroll-down .mouse::before{
+  content:'';position:absolute;
+  top:8px;left:50%;transform:translateX(-50%);
+  width:3px;height:8px;
+  background:#fff;border-radius:3px;
+  animation:scrollDot 1.5s infinite;
+}
+@keyframes scrollDot{
+  0%{opacity:1;top:8px}
+  100%{opacity:0;top:24px}
+}
+
+/* ============ MARQUEE ============ */
+.marquee{
+  background:var(--primary);color:#fff;
+  padding:1.5rem 0;overflow:hidden;
+  display:flex;white-space:nowrap;
+}
+.marquee-track{
+  display:flex;gap:3rem;
+  animation:marquee 30s linear infinite;
+  flex-shrink:0;
+}
+.marquee-track span{
+  font-size:1.2rem;font-weight:700;
+  display:flex;align-items:center;gap:1rem;
+}
+.marquee-track span::before{
+  content:'◆';color:var(--accent);font-size:.8rem;
+}
+@keyframes marquee{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-100%)}
+}
+
+/* ============ SECTION BASE ============ */
+section{padding:6rem 5%;position:relative}
+.section-title{
+  text-align:center;
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:900;
+  margin-bottom:1rem;
+  letter-spacing:-1.5px;
+  line-height:1.15;
+}
+.section-title .accent{
+  background:var(--gradient);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.section-subtitle{
+  text-align:center;color:var(--gray);
+  font-size:1.1rem;max-width:720px;
+  margin:0 auto 4rem;
+}
+.section-tag{
+  display:inline-block;
+  padding:.4rem 1rem;
+  background:rgba(233,69,96,.1);
+  color:var(--accent);
+  border-radius:50px;
+  font-size:.8rem;font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  margin-bottom:1rem;
+}
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal{
+  opacity:0;transform:translateY(50px);
+  transition:opacity .8s cubic-bezier(.25,.8,.25,1),
+             transform .8s cubic-bezier(.25,.8,.25,1);
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-60px);transition:all .9s cubic-bezier(.25,.8,.25,1)}
+.reveal-right{opacity:0;transform:translateX(60px);transition:all .9s cubic-bezier(.25,.8,.25,1)}
+.reveal-scale{opacity:0;transform:scale(.85);transition:all .9s cubic-bezier(.25,.8,.25,1)}
+.reveal-left.visible,.reveal-right.visible,.reveal-scale.visible{opacity:1;transform:translate(0) scale(1)}
+
+/* ============ ABOUT ============ */
+.about{background:var(--light)}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;max-width:1200px;margin:0 auto;
+}
+.about-visual{
+  aspect-ratio:1;border-radius:30px;
+  position:relative;overflow:hidden;
+  box-shadow:var(--shadow-lg);
+}
+.about-visual img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1s cubic-bezier(.25,.8,.25,1);
+}
+.about-visual:hover img{transform:scale(1.08)}
+.about-visual::after{
+  content:'';position:absolute;inset:20px;
+  border:2px dashed rgba(255,255,255,.35);
+  border-radius:20px;
+  animation:rotateBorder 20s linear infinite;
+  pointer-events:none;
+}
+@keyframes rotateBorder{
+  to{transform:rotate(360deg)}
+}
+.about-visual .badge{
+  position:absolute;bottom:20px;right:20px;
+  background:#fff;color:var(--primary);
+  padding:1rem 1.5rem;border-radius:20px;
+  box-shadow:var(--shadow-md);
+  font-weight:700;text-align:center;
+  z-index:2;
+}
+.about-visual .badge strong{
+  display:block;font-size:1.6rem;
+  background:var(--gradient);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.about-visual .badge small{color:var(--gray);font-size:.75rem}
+.about-text h2{
+  font-size:2.4rem;margin-bottom:1.5rem;
+  font-weight:900;letter-spacing:-1px;line-height:1.15;
+}
+.about-text p{color:var(--gray);margin-bottom:1.5rem;font-size:1.05rem}
+.features{list-style:none;margin-top:2rem;display:grid;gap:.8rem}
+.features li{
+  padding:.6rem 0 .6rem 2.5rem;
+  position:relative;font-weight:500;
+}
+.features li::before{
+  content:'✓';position:absolute;left:0;top:50%;
+  transform:translateY(-50%);
+  width:28px;height:28px;
+  background:var(--gradient);color:#fff;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.85rem;
+}
+
+/* ============ SERVICES ============ */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:2rem;max-width:1250px;margin:0 auto;
+}
+.service-card{
+  background:#fff;
+  border-radius:var(--radius);
+  position:relative;overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  border:1px solid rgba(0,0,0,.04);
+  transition:all .5s cubic-bezier(.25,.8,.25,1);
+  cursor:pointer;
+}
+.service-card::before{
+  content:'';position:absolute;
+  top:0;left:0;width:100%;height:4px;
+  background:var(--gradient);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .5s;
+  z-index:3;
+}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card:hover{
+  transform:translateY(-12px);
+  box-shadow:var(--shadow-accent);
+  border-color:transparent;
+}
+.service-img{
+  width:100%;height:200px;overflow:hidden;
+  position:relative;
+}
+.service-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .8s cubic-bezier(.25,.8,.25,1);
+}
+.service-card:hover .service-img img{transform:scale(1.12)}
+.service-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 50%,rgba(10,10,26,.5));
+}
+.service-body{padding:2rem 2rem 2.5rem}
+.service-card h3{font-size:1.3rem;margin-bottom:.8rem;font-weight:700}
+.service-card p{color:var(--gray);font-size:.95rem;margin-bottom:1.2rem}
+.service-link{
+  color:var(--accent);font-weight:600;font-size:.9rem;
+  display:inline-flex;align-items:center;gap:.4rem;
+  transition:gap .3s;
+}
+.service-card:hover .service-link{gap:.8rem}
+
+/* ============ PROCESS ============ */
+.process{background:var(--primary);color:#fff}
+.process .section-title{color:#fff}
+.process .section-subtitle{color:rgba(255,255,255,.7)}
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:2rem;max-width:1200px;margin:0 auto;
+  position:relative;
+}
+.process-step{
+  text-align:center;position:relative;
+  padding:2rem 1rem;
+}
+.step-num{
+  width:80px;height:80px;
+  border-radius:50%;
+  background:var(--gradient);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;font-weight:900;
+  margin:0 auto 1.5rem;
+  position:relative;
+  transition:transform .5s;
+  box-shadow:0 10px 30px rgba(233,69,96,.4);
+}
+.process-step:hover .step-num{transform:scale(1.15) rotate(360deg)}
+.step-num::after{
+  content:'';position:absolute;inset:-8px;
+  border:2px dashed rgba(233,69,96,.4);
+  border-radius:50%;
+  animation:rotateBorder 15s linear infinite;
+}
+.process-step h3{font-size:1.2rem;margin-bottom:.6rem;font-weight:700}
+.process-step p{color:rgba(255,255,255,.7);font-size:.9rem}
+
+/* ============ GALLERY ============ */
+.gallery{background:var(--light)}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;max-width:1200px;margin:0 auto;
+}
+.gallery-item{
+  aspect-ratio:1;border-radius:var(--radius);
+  position:relative;overflow:hidden;cursor:pointer;
+  background:var(--primary);
+  transition:all .6s cubic-bezier(.25,.8,.25,1);
+}
+.gallery-item img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+  transition:transform .8s cubic-bezier(.25,.8,.25,1),
+             filter .5s;
+  filter:brightness(.95) saturate(1.05);
+}
+.gallery-item:hover img{
+  transform:scale(1.12);
+  filter:brightness(1) saturate(1.15);
+}
+.gallery-item::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,10,26,.9) 0%,rgba(10,10,26,.3) 40%,transparent 70%);
+  opacity:0;transition:opacity .4s;
+  pointer-events:none;
+}
+.gallery-item:hover::after{opacity:1}
+.gallery-overlay{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:1.5rem;color:#fff;z-index:2;
+  transform:translateY(20px);opacity:0;
+  transition:all .5s cubic-bezier(.25,.8,.25,1);
+}
+.gallery-item:hover .gallery-overlay{transform:translateY(0);opacity:1}
+.gallery-overlay h4{font-size:1.1rem;font-weight:700;margin-bottom:.2rem}
+.gallery-overlay span{
+  font-size:.85rem;opacity:.85;
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.gallery-overlay span::before{
+  content:'';width:20px;height:1px;
+  background:var(--accent);
+}
+.gallery-item:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lg);
+}
+
+/* ============ PRICING ============ */
+.pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2rem;max-width:1150px;margin:0 auto;
+}
+.price-card{
+  background:#fff;border-radius:var(--radius);
+  padding:2.5rem 2rem;text-align:center;
+  box-shadow:var(--shadow-sm);
+  border:2px solid transparent;
+  transition:all .5s;position:relative;
+}
+.price-card:hover{
+  transform:translateY(-10px);
+  box-shadow:var(--shadow-lg);
+  border-color:var(--accent);
+}
+.price-card.featured{
+  background:var(--primary);color:#fff;
+  transform:scale(1.05);
+  border-color:var(--accent);
+  box-shadow:var(--shadow-accent);
+}
+.price-card.featured:hover{transform:scale(1.05) translateY(-10px)}
+.price-badge{
+  position:absolute;top:-15px;left:50%;
+  transform:translateX(-50%);
+  background:var(--gold);color:var(--primary);
+  padding:.4rem 1.2rem;border-radius:50px;
+  font-size:.75rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:1px;
+}
+.price-card h3{font-size:1.4rem;margin-bottom:.5rem;font-weight:800}
+.price-card .price{
+  font-size:3rem;font-weight:900;margin:1rem 0;
+  background:var(--gradient);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.price-card.featured .price{
+  background:linear-gradient(135deg,#fff,var(--gold));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.price-card .price span{font-size:1rem;font-weight:500}
+.price-features{
+  list-style:none;margin:2rem 0;
+  text-align:left;display:grid;gap:.8rem;
+}
+.price-features li{
+  padding-left:1.8rem;position:relative;
+  font-size:.95rem;
+}
+.price-features li::before{
+  content:'✓';position:absolute;left:0;
+  color:var(--accent);font-weight:900;
+}
+.price-card.featured .price-features li::before{color:var(--gold)}
+
+/* ============ TESTIMONIALS ============ */
+.testimonials{background:var(--light);overflow:hidden}
+.testimonial-slider{
+  max-width:900px;margin:0 auto;
+  position:relative;height:380px;
+}
+.testimonial{
+  position:absolute;inset:0;
+  background:#fff;border-radius:var(--radius);
+  padding:3rem;
+  box-shadow:var(--shadow-md);
+  opacity:0;transform:translateX(50px);
+  transition:all .6s cubic-bezier(.25,.8,.25,1);
+  pointer-events:none;
+}
+.testimonial.active{opacity:1;transform:translateX(0);pointer-events:auto}
+.testimonial .quote-mark{
+  font-size:5rem;line-height:1;
+  color:var(--accent);opacity:.15;
+  font-family:Georgia,serif;
+  position:absolute;top:1rem;left:2rem;
+}
+.testimonial p{
+  font-size:1.15rem;font-style:italic;
+  margin-bottom:2rem;position:relative;
+  color:var(--primary);
+}
+.testimonial-author{display:flex;align-items:center;gap:1rem}
+.testimonial-avatar{
+  width:60px;height:60px;border-radius:50%;
+  overflow:hidden;
+  flex-shrink:0;
+  border:3px solid var(--accent);
+}
+.testimonial-avatar img{
+  width:100%;height:100%;object-fit:cover;
+}
+.testimonial-author h4{font-size:1rem;font-weight:700}
+.testimonial-author span{color:var(--gray);font-size:.85rem}
+.testimonial-dots{
+  display:flex;justify-content:center;gap:.6rem;margin-top:2rem;
+}
+.dot-btn{
+  width:12px;height:12px;border-radius:50%;
+  background:var(--gray-light);border:none;
+  cursor:pointer;transition:all .3s;
+}
+.dot-btn.active{
+  background:var(--accent);width:32px;border-radius:6px;
+}
+.stars{color:var(--gold);margin-bottom:1rem;font-size:1rem;letter-spacing:3px}
+
+/* ============ TEAM ============ */
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:2rem;max-width:1100px;margin:0 auto;
+}
+.team-card{
+  text-align:center;
+  transition:transform .5s;
+}
+.team-card:hover{transform:translateY(-10px)}
+.team-photo{
+  width:180px;height:180px;border-radius:50%;
+  margin:0 auto 1.5rem;
+  overflow:hidden;
+  position:relative;
+  transition:transform .5s;
+  box-shadow:var(--shadow-md);
+}
+.team-photo img{
+  width:100%;height:100%;object-fit:cover;
+}
+.team-card:hover .team-photo{transform:rotate(-5deg) scale(1.05)}
+.team-photo::after{
+  content:'';position:absolute;inset:-10px;
+  border:2px dashed var(--accent);
+  border-radius:50%;opacity:0;
+  transition:opacity .4s;
+  animation:rotateBorder 15s linear infinite;
+}
+.team-card:hover .team-photo::after{opacity:.6}
+.team-card h3{font-size:1.15rem;font-weight:700;margin-bottom:.2rem}
+.team-card span{color:var(--accent);font-size:.9rem;font-weight:600}
+.team-card p{color:var(--gray);font-size:.9rem;margin-top:.8rem}
+
+/* ============ FAQ ============ */
+.faq{background:var(--light)}
+.faq-list{max-width:850px;margin:0 auto}
+.faq-item{
+  background:#fff;border-radius:16px;
+  margin-bottom:1rem;overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  transition:box-shadow .3s;
+}
+.faq-item:hover{box-shadow:var(--shadow-md)}
+.faq-question{
+  padding:1.5rem 2rem;
+  display:flex;justify-content:space-between;align-items:center;
+  cursor:pointer;font-weight:700;font-size:1.05rem;
+  gap:1rem;user-select:none;
+}
+.faq-icon{
+  width:32px;height:32px;flex-shrink:0;
+  border-radius:50%;
+  background:var(--light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;font-weight:300;
+  transition:all .4s;
+  color:var(--accent);
+}
+.faq-item.open .faq-icon{
+  background:var(--gradient);color:#fff;
+  transform:rotate(135deg);
+}
+.faq-answer{
+  max-height:0;overflow:hidden;
+  transition:max-height .5s cubic-bezier(.25,.8,.25,1),
+             padding .5s;
+  padding:0 2rem;
+  color:var(--gray);
+}
+.faq-item.open .faq-answer{
+  max-height:400px;padding:0 2rem 1.5rem;
+}
+
+/* ============ CTA BANNER ============ */
+.cta-banner{
+  background:
+    linear-gradient(135deg,rgba(102,126,234,.9),rgba(118,75,162,.9),rgba(233,69,96,.9)),
+    url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80') center/cover;
+  background-size:cover;
+  color:#fff;text-align:center;
+  padding:5rem 5%;border-radius:30px;
+  max-width:1200px;margin:0 auto;
+  position:relative;overflow:hidden;
+  background-attachment:fixed;
+}
+.cta-banner::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 50%,rgba(255,255,255,.15),transparent 60%);
+}
+.cta-banner h2{
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:900;margin-bottom:1rem;
+  position:relative;letter-spacing:-1px;
+}
+.cta-banner p{
+  font-size:1.1rem;margin-bottom:2rem;
+  opacity:.95;position:relative;
+}
+.cta-banner .btn{position:relative}
+
+/* ============ CONTACT ============ */
+.contact{background:var(--primary);color:#fff}
+.contact .section-title{color:#fff}
+.contact .section-subtitle{color:rgba(255,255,255,.7)}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1.2fr;
+  gap:4rem;max-width:1150px;margin:0 auto;
+}
+.contact-info h3{font-size:1.5rem;margin-bottom:2rem;font-weight:700}
+.contact-item{
+  display:flex;align-items:flex-start;gap:1.2rem;
+  margin-bottom:1.8rem;
+  padding:1.2rem;border-radius:16px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  transition:all .4s;
+}
+.contact-item:hover{
+  background:rgba(255,255,255,.08);
+  transform:translateX(8px);
+  border-color:var(--accent);
+}
+.contact-item .icon{
+  width:48px;height:48px;flex-shrink:0;
+  border-radius:12px;
+  background:var(--gradient);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;
+}
+.contact-item strong{display:block;margin-bottom:.2rem;font-size:.95rem}
+.contact-item p{color:rgba(255,255,255,.65);font-size:.9rem}
+form{display:flex;flex-direction:column;gap:1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+input,textarea,select{
+  padding:1rem 1.2rem;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.05);
+  color:#fff;font-family:inherit;font-size:1rem;
+  transition:all .3s;width:100%;
+}
+select option{background:var(--primary);color:#fff}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.45)}
+input:focus,textarea:focus,select:focus{
+  outline:none;
+  border-color:var(--accent);
+  background:rgba(255,255,255,.1);
+  box-shadow:0 0 0 4px rgba(233,69,96,.15);
+}
+textarea{resize:vertical;min-height:130px}
+
+/* ============ FOOTER ============ */
+footer{
+  background:#050510;color:rgba(255,255,255,.6);
+  padding:4rem 5% 2rem;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:3rem;max-width:1250px;margin:0 auto 3rem;
+}
+.footer-col h4{
+  color:#fff;font-size:1rem;margin-bottom:1.5rem;
+  font-weight:700;
+}
+.footer-col p{font-size:.9rem;line-height:1.7;margin-bottom:1rem}
+.footer-col ul{list-style:none;display:grid;gap:.7rem}
+.footer-col a{
+  font-size:.9rem;transition:all .3s;
+  display:inline-block;
+}
+.footer-col a:hover{color:var(--accent);transform:translateX(5px)}
+.social-links{display:flex;gap:.8rem;margin-top:1rem}
+.social-links a{
+  width:42px;height:42px;border-radius:12px;
+  background:rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;transition:all .3s;
+}
+.social-links a:hover{
+  background:var(--gradient);
+  transform:translateY(-4px) rotate(-5deg);
+  color:#fff;
+}
+.newsletter{
+  display:flex;gap:.5rem;margin-top:1rem;
+}
+.newsletter input{padding:.8rem 1rem;font-size:.9rem}
+.newsletter button{
+  padding:.8rem 1.2rem;border-radius:12px;
+  background:var(--gradient);color:#fff;
+  border:none;cursor:pointer;font-weight:700;
+  transition:transform .3s;
+}
+.newsletter button:hover{transform:scale(1.05)}
+.footer-bottom{
+  text-align:center;padding-top:2rem;
+  border-top:1px solid rgba(255,255,255,.08);
+  font-size:.85rem;
+}
+.footer-bottom a{color:var(--accent)}
+
+/* ============ BACK TO TOP ============ */
+.back-top{
+  position:fixed;bottom:2rem;right:2rem;
+  width:52px;height:52px;border-radius:50%;
+  background:var(--gradient);color:#fff;
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;
+  box-shadow:var(--shadow-accent);
+  opacity:0;visibility:hidden;
+  transform:translateY(20px);
+  transition:all .4s;z-index:999;
+}
+.back-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.back-top:hover{transform:translateY(-4px) scale(1.1)}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:968px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:3rem}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .price-card.featured{transform:scale(1)}
+  .hero{background-attachment:scroll}
+  .cta-banner{background-attachment:scroll}
+}
+@media (max-width:768px){
+  .nav-links{
+    display:none;position:absolute;
+    top:100%;left:0;right:0;
+    background:#fff;flex-direction:column;
+    padding:2rem;gap:1.5rem;
+    box-shadow:var(--shadow-md);
+    border-top:1px solid rgba(0,0,0,.05);
+  }
+  .nav-links.active{display:flex;animation:fadeInUp .4s ease}
+  .hamburger{display:flex}
+  section{padding:4rem 5%}
+  .hero{padding:7rem 5% 4rem}
+  .hero-stats{gap:1.5rem}
+  .stat h3{font-size:1.8rem}
+  .form-row{grid-template-columns:1fr}
+  .testimonial{padding:2rem}
+  .testimonial-slider{height:460px}
+  .footer-grid{grid-template-columns:1fr;gap:2rem}
+  .marquee-track span{font-size:1rem}
+  .contact-item{padding:1rem}
+  .service-img{height:180px}
+}
+@media (max-width:500px){
+  .gallery-grid{grid-template-columns:1fr}
+  .blob{display:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- Loader -->
+<div class="loader" id="loader"><div class="loader-ring"></div></div>
+
+<!-- Scroll Progress -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <a href="#home" class="logo"><span class="logo-dot"></span>Artisan Epoxy</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Get Quote</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span>Trusted by 500+ clients since 2014</div>
+    <h1>
+      <span class="line"><span>Premium Epoxy</span></span>
+      <span class="line"><span>Resin Crafted</span></span>
+      <span class="line"><span>For Every Surface</span></span>
+    </h1>
+    <p>Transform ordinary spaces into extraordinary works of art. From river tables to industrial floor coatings — precision, durability, and beauty in every pour.</p>
+    <div class="cta-buttons">
+      <a href="#contact" class="btn btn-primary">Get a Free Quote →</a>
+      <a href="#gallery" class="btn btn-outline">View Our Work</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><h3 data-count="500">0</h3><p>Projects Completed</p></div>
+      <div class="stat"><h3 data-count="10">0</h3><p>Years Experience</p></div>
+      <div class="stat"><h3 data-count="98">0</h3><p>% Satisfaction</p></div>
+    </div>
+  </div>
+  <div class="scroll-down">
+    <div class="mouse"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>River Tables</span><span>Floor Coatings</span><span>Countertops</span>
+    <span>Resin Art</span><span>Industrial Epoxy</span><span>Custom Furniture</span>
+    <span>River Tables</span><span>Floor Coatings</span><span>Countertops</span>
+    <span>Resin Art</span><span>Industrial Epoxy</span><span>Custom Furniture</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal-left">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1000&q=80" alt="Epoxy craftsmanship in progress">
+      <div class="badge"><strong>10+</strong><small>Years of Craft</small></div>
+    </div>
+    <div class="about-text reveal-right">
+      <span class="section-tag">About Us</span>
+      <h2>Crafting Beauty Through Chemistry &amp; Passion</h2>
+      <p>For over a decade, Artisan Epoxy has been transforming spaces with premium-grade epoxy resin solutions. We blend industrial-strength durability with artistic vision — delivering results that stand the test of time.</p>
+      <p>Every project, from a single river table to a 10,000 sq. ft. warehouse floor, receives the same obsessive attention to detail.</p>
+      <ul class="features">
+        <li>Premium UV-resistant epoxy formulas</li>
+        <li>Custom color matching &amp; metallic finishes</li>
+        <li>Eco-friendly low-VOC options available</li>
+        <li>Certified installers with 10+ years experience</li>
+        <li>Lifetime warranty on select services</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="reveal">
+    <div style="text-align:center"><span class="section-tag">Our Services</span></div>
+    <h2 class="section-title">Solutions For <span class="accent">Every Surface</span></h2>
+    <p class="section-subtitle">From residential renovations to large-scale commercial projects, we deliver epoxy solutions tailored to your exact vision.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&q=80" alt="River Table" loading="lazy">
+      </div>
+      <div class="service-body">
+        <h3>River Tables &amp; Furniture</h3>
+        <p>Custom-crafted river tables, bar tops, and bespoke furniture pieces that become centerpieces for generations.</p>
+        <span class="service-link">Learn more →</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Epoxy Floor" loading="lazy">
+      </div>
+      <div class="service-body">
+        <h3>Floor Coatings</h3>
+        <p>Metallic, flake, and solid epoxy floors engineered for garages, warehouses, showrooms, and retail spaces.</p>
+        <span class="service-link">Learn more →</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=800&q=80" alt="Resin Art" loading="lazy">
+      </div>
+      <div class="service-body">
+        <h3>Art &amp; Resin Crafts</h3>
+        <p>Bespoke artwork, jewelry, ocean panels, and decorative pieces crafted with crystal-clear epoxy.</p>
+        <span class="service-link">Learn more →</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80" alt="Industrial Epoxy" loading="lazy">
+      </div>
+      <div class="service-body">
+        <h3>Industrial Applications</h3>
+        <p>Chemical-resistant coatings, electrical encapsulation, and high-performance bonding for tough environments.</p>
+        <span class="service-link">Learn more →</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=800&q=80" alt="Countertops" loading="lazy">
+      </div>
+      <div class="service-body">
+        <h3>Countertops</h3>
+        <p>Stunning epoxy countertops for kitchens, bathrooms, and commercial spaces — custom colors, endless designs.</p>
+        <span class="service-link">Learn more →</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80" alt="Repair & Restoration" loading="lazy">
+      </div>
+      <div class="service-body">
+        <h3>Repairs &amp; Restoration</h3>
+        <p>Crack repairs, surface restoration, and refinishing with long-lasting epoxy that matches perfectly.</p>
+        <span class="service-link">Learn more →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="reveal">
+    <div style="text-align:center"><span class="section-tag" style="background:rgba(233,69,96,.2)">How We Work</span></div>
+    <h2 class="section-title">Our <span class="accent">Proven Process</span></h2>
+    <p class="section-subtitle">Four simple steps from concept to completion — clear communication at every stage.</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <div class="step-num">1</div>
+      <h3>Consultation</h3>
+      <p>We discuss your vision, budget, and site requirements in detail.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">2</div>
+      <h3>Design &amp; Quote</h3>
+      <p>Detailed design mockups and transparent pricing — no surprises.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">3</div>
+      <h3>Expert Application</h3>
+      <p>Our certified team executes with precision using premium materials.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">4</div>
+      <h3>Final Walkthrough</h3>
+      <p>We inspect every detail together and hand over with full warranty.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="reveal">
+    <div style="text-align:center"><span class="section-tag">Portfolio</span></div>
+    <h2 class="section-title">Recent <span class="accent">Projects</span></h2>
+    <p class="section-subtitle">A glimpse into the finishes, colors, and craftsmanship we deliver every day.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal-scale">
+      <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&q=80" alt="Walnut River Table" loading="lazy">
+      <div class="gallery-overlay"><h4>Walnut River Table</h4><span>Residential • 2025</span></div>
+    </div>
+    <div class="gallery-item reveal-scale">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80" alt="Metallic Epoxy Floor" loading="lazy">
+      <div class="gallery-overlay"><h4>Metallic Floor</h4><span>Commercial • 2025</span></div>
+    </div>
+    <div class="gallery-item reveal-scale">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Ocean Bar Top" loading="lazy">
+      <div class="gallery-overlay"><h4>Ocean Bar Top</h4><span>Hospitality • 2024</span></div>
+    </div>
+    <div class="gallery-item reveal-scale">
+      <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=800&q=80" alt="Resin Art Panel" loading="lazy">
+      <div class="gallery-overlay"><h4>Resin Art Panel</h4><span>Custom • 2024</span></div>
+    </div>
+    <div class="gallery-item reveal-scale">
+      <img src="https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=800&q=80" alt="Kitchen Countertop" loading="lazy">
+      <div class="gallery-overlay"><h4>Kitchen Countertop</h4><span>Residential • 2024</span></div>
+    </div>
+    <div class="gallery-item reveal-scale">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Garage Epoxy Coating" loading="lazy">
+      <div class="gallery-overlay"><h4>Garage Coating</h4><span>Residential • 2025</span></div>
+    </div>
+    <div class="gallery-item reveal-scale">
+      <img src="https://images.unsplash.com/photo-1503602642458-232111445657?w=800&q=80" alt="Epoxy Dining Set" loading="lazy">
+      <div class="gallery-overlay"><h4>Epoxy Dining Set</h4><span>Custom • 2025</span></div>
+    </div>
+    <div class="gallery-item reveal-scale">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="Boutique Interior" loading="lazy">
+      <div class="gallery-overlay"><h4>Boutique Interior</h4><span>Retail • 2024</span></div>
+    </div>
+    <div class="gallery-item reveal-scale">
+      <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80" alt="Office Reception" loading="lazy">
+      <div class="gallery-overlay"><h4>Office Reception</h4><span>Corporate • 2025</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="reveal">
+    <div style="text-align:center"><span class="section-tag">Pricing</span></div>
+    <h2 class="section-title">Transparent <span class="accent">Packages</span></h2>
+    <p class="section-subtitle">Flexible options for every project size. Custom quotes available for unique requirements.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <h3>Essential</h3>
+      <div class="price">$45<span>/sq ft</span></div>
+      <ul class="price-features">
+        <li>Standard epoxy formula</li>
+        <li>Single color finish</li>
+        <li>5-year warranty</li>
+        <li>2-week turnaround</li>
+        <li>Basic surface prep</li>
+      </ul>
+      <a href="#contact" class="btn btn-accent" style="width:100%;justify-content:center">Get Started</a>
+    </div>
+    <div class="price-card featured reveal">
+      <div class="price-badge">Most Popular</div>
+      <h3>Signature</h3>
+      <div class="price">$85<span>/sq ft</span></div>
+      <ul class="price-features">
+        <li>Premium UV-resistant epoxy</li>
+        <li>Metallic / custom colors</li>
+        <li>Lifetime warranty</li>
+        <li>7-day turnaround</li>
+        <li>Advanced prep &amp; sealing</li>
+        <li>Free design consultation</li>
+      </ul>
+      <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center">Get Started</a>
+    </div>
+    <div class="price-card reveal">
+      <h3>Luxury</h3>
+      <div class="price">$150<span>/sq ft</span></div>
+      <ul class="price-features">
+        <li>Artisan custom formulation</li>
+        <li>3D / metallic / pearl effects</li>
+        <li>Lifetime warranty + service</li>
+        <li>Priority scheduling</li>
+        <li>Bespoke design collaboration</li>
+        <li>White-glove installation</li>
+      </ul>
+      <a href="#contact" class="btn btn-accent" style="width:100%;justify-content:center">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="reveal">
+    <div style="text-align:center"><span class="section-tag">Testimonials</span></div>
+    <h2 class="section-title">What Clients <span class="accent">Say</span></h2>
+    <p class="section-subtitle">Real feedback from real projects — our reputation is built on results.</p>
+  </div>
+  <div class="testimonial-slider" id="testimonialSlider">
+    <div class="testimonial active">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p>Absolutely blown away by the river table they crafted for our dining room. The detail, the finish, the durability — it exceeded every expectation. Worth every penny.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">
+          <img src="https://i.pravatar.cc/150?img=47" alt="Sarah Mitchell" loading="lazy">
+        </div>
+        <div><h4>Sarah Mitchell</h4><span>Homeowner • Portland, OR</span></div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p>We hired Artisan Epoxy for our 8,000 sq ft warehouse floor. Their team was professional, on schedule, and the result is flawless. Highly recommend for commercial projects.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">
+          <img src="https://i.pravatar.cc/150?img=13" alt="James Chen" loading="lazy">
+        </div>
+        <div><h4>James Chen</h4><span>Operations Manager • TechFlow Inc.</span></div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p>From the initial consultation to the final walkthrough, everything was seamless. The metallic epoxy floor in our showroom is a showstopper — customers ask about it constantly.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">
+          <img src="https://i.pravatar.cc/150?img=44" alt="Elena Rodriguez" loading="lazy">
+        </div>
+        <div><h4>Elena Rodriguez</h4><span>Owner • Luxe Boutique</span></div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="quote-mark">"</div>
+      <div class="stars">★★★★★</div>
+      <p>The team transformed our outdated kitchen counters into stunning modern works of art. Attention to detail was unmatched, and they finished ahead of schedule.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">
+          <img src="https://i.pravatar.cc/150?img=33" alt="David Park" loading="lazy">
+        </div>
+        <div><h4>David Park</h4><span>Homeowner • Austin, TX</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="testimonial-dots" id="testimonialDots"></div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="reveal">
+    <div style="text-align:center"><span class="section-tag">Our Team</span></div>
+    <h2 class="section-title">Meet The <span class="accent">Artisans</span></h2>
+    <p class="section-subtitle">A team of passionate craftspeople, engineers, and designers behind every pour.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-photo">
+        <img src="https://i.pravatar.cc/400?img=12" alt="Marcus Rivera" loading="lazy">
+      </div>
+      <h3>Marcus Rivera</h3>
+      <span>Founder &amp; Lead Craftsman</span>
+      <p>15 years in epoxy artistry and custom furniture design.</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-photo">
+        <img src="https://i.pravatar.cc/400?img=45" alt="Priya Patel" loading="lazy">
+      </div>
+      <h3>Priya Patel</h3>
+      <span>Materials Engineer</span>
+      <p>Specializes in UV-resistant formulations and industrial coatings.</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-photo">
+        <img src="https://i.pravatar.cc/400?img=15" alt="Tom Anderson" loading="lazy">
+      </div>
+      <h3>Tom Anderson</h3>
+      <span>Installation Lead</span>
+      <p>Certified installer with 12 years of commercial flooring experience.</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-photo">
+        <img src="https://i.pravatar.cc/400?img=32" alt="Luna Vasquez" loading="lazy">
+      </div>
+      <h3>Luna Vasquez</h3>
+      <span>Design Director</span>
+      <p>Custom color matching and bespoke design specialist.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="reveal">
+    <div style="text-align:center"><span class="section-tag">FAQ</span></div>
+    <h2 class="section-title">Frequently Asked <span class="accent">Questions</span></h2>
+    <p class="section-subtitle">Everything you need to know before starting your epoxy project.</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <div class="faq-question">How long does epoxy take to cure? <div class="faq-icon">+</div></div>
+      <div class="faq-answer"><p>Most projects are walkable within 24–48 hours and fully cured in 5–7 days. Full chemical resistance develops over 7–14 days. We'll provide a detailed timeline for your specific project.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question">Is epoxy safe for kitchens and food areas? <div class="faq-icon">+</div></div>
+      <div class="faq-answer"><p>Yes! Once fully cured, our food-safe epoxy formulations are FDA-compliant and ideal for countertops, bar tops, and food preparation surfaces. We use only premium, non-toxic resins for these applications.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question">How long does an epoxy floor last? <div class="faq-icon">+</div></div>
+      <div class="faq-answer"><p>A professionally installed epoxy floor typically lasts 10–20 years with proper maintenance. Our Signature and Luxury packages come with lifetime warranties. Regular cleaning and occasional recoating extend lifespan significantly.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question">Can you match my existing color scheme? <div class="faq-icon">+</div></div>
+      <div class="faq-answer"><p>Absolutely. We offer custom color matching using RAL, Pantone, and physical samples. Our team can also create metallic, pearlescent, and 3D effects for truly unique finishes.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question">Do you offer free estimates? <div class="faq-icon">+</div></div>
+      <div class="faq-answer"><p>Yes — all estimates are completely free with no obligation. We'll visit your site, discuss your vision, and provide a transparent itemized quote within 48 hours.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-question">What areas do you serve? <div class="faq-icon">+</div></div>
+      <div class="faq-answer"><p>We serve the entire metropolitan region and surrounding areas within a 150-mile radius. For larger commercial projects, we travel nationwide. Contact us with your location for confirmation.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section style="padding:3rem 5% 6rem">
+  <div class="cta-banner reveal">
+    <h2>Ready to Transform Your Space?</h2>
+    <p>Get a free consultation and quote within 24 hours. No obligation, no pressure.</p>
+    <a href="#contact" class="btn btn-primary">Get Your Free Quote →</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <div style="text-align:center"><span class="section-tag" style="background:rgba(233,69,96,.2)">Contact</span></div>
+    <h2 class="section-title">Let's Build Something <span class="accent">Beautiful</span></h2>
+    <p class="section-subtitle">Tell us about your project — we'll respond within 24 hours.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info reveal-left">
+      <h3>Get In Touch</h3>
+      <div class="contact-item">
+        <div class="icon">📍</div>
+        <div><strong>Visit Our Studio</strong><p>123 Craft Street, Your City, ST 12345</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📞</div>
+        <div><strong>Call Us</strong><p>+1 (555) 123-4567</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">✉️</div>
+        <div><strong>Email Us</strong><p>hello@artisanepoxy.com</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">🕐</div>
+        <div><strong>Working Hours</strong><p>Mon–Fri: 8am–6pm • Sat: 9am–4pm</p></div>
+      </div>
+    </div>
+    <form class="reveal-right" onsubmit="event.preventDefault();alert('Thank you! We\'ll be in touch within 24 hours.');this.reset();">
+      <div class="form-row">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Email Address" required>
+      </div>
+      <div class="form-row">
+        <input type="tel" placeholder="Phone Number">
+        <select required>
+          <option value="">Select Service</option>
+          <option>River Table / Furniture</option>
+          <option>Floor Coating</option>
+          <option>Countertop</option>
+          <option>Resin Art</option>
+          <option>Industrial Application</option>
+          <option>Repair &amp; Restoration</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <textarea placeholder="Tell us about your project — dimensions, timeline, and vision..." required></textarea>
+      <button type="submit" class="btn btn-accent" style="justify-content:center">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <a href="#home" class="logo" style="margin-bottom:1rem"><span class="logo-dot"></span>Artisan Epoxy</a>
+      <p>Premium epoxy resin solutions for residential, commercial, and industrial applications. Crafted with precision since 2014.</p>
+      <div class="social-links">
+        <a href="#" title="Facebook">f</a>
+        <a href="#" title="Instagram">📷</a>
+        <a href="#" title="Twitter">𝕏</a>
+        <a href="#" title="YouTube">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">River Tables</a></li>
+        <li><a href="#services">Floor Coatings</a></li>
+        <li><a href="#services">Countertops</a></li>
+        <li><a href="#services">Resin Art</a></li>
+        <li><a href="#services">Industrial</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#gallery">Portfolio</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p style="font-size:.85rem">Subscribe for project inspiration &amp; exclusive offers.</p>
+      <div class="newsletter">
+        <input type="email" placeholder="Your email">
+        <button type="button" onclick="alert('Subscribed! 🎉')">→</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Artisan Epoxy. All rights reserved. | Crafted with 💜 and resin. | <a href="#">Privacy</a> • <a href="#">Terms</a></p>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-top" id="backTop" title="Back to top">↑</button>
+
+<script>
+/* ============ LOADER ============ */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 500);
+});
+
+/* ============ SCROLL PROGRESS + NAV ============ */
+const navbar = document.getElementById('navbar');
+const progressBar = document.getElementById('progressBar');
+const backTop = document.getElementById('backTop');
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const percent = (scrollTop / docHeight) * 100;
+  progressBar.style.width = percent + '%';
+  
+  navbar.classList.toggle('scrolled', scrollTop > 50);
+  backTop.classList.toggle('visible', scrollTop > 500);
+});
+
+backTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ============ MOBILE MENU ============ */
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('active');
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('active');
+  });
+});
+
+/* ============ SMOOTH SCROLL ============ */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+/* ============ REVEAL ON SCROLL ============ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
+  .forEach(el => revealObserver.observe(el));
+
+/* ============ COUNTER ANIMATION ============ */
+const counters = document.querySelectorAll('[data-count]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = +el.dataset.count;
+      const duration = 2000;
+      const start = performance.now();
+      
+      const update = (now) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        el.textContent = Math.floor(eased * target) + (target === 98 ? '' : '+');
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = target + (target === 98 ? '%' : '+');
+      };
+      requestAnimationFrame(update);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+counters.forEach(c => counterObserver.observe(c));
+
+/* ============ TESTIMONIAL SLIDER ============ */
+const testimonials = document.querySelectorAll('.testimonial');
+const dotsContainer = document.getElementById('testimonialDots');
+let currentSlide = 0;
+let slideInterval;
+
+testimonials.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'dot-btn' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', () => goToSlide(i));
+  dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll('.dot-btn');
+
+function goToSlide(index) {
+  testimonials[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = index;
+  testimonials[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+  resetInterval();
+}
+
+function nextSlide() {
+  goToSlide((currentSlide + 1) % testimonials.length);
+}
+
+function resetInterval() {
+  clearInterval(slideInterval);
+  slideInterval = setInterval(nextSlide, 6000);
+}
+resetInterval();
+
+/* ============ FAQ ACCORDION ============ */
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+/* ============ TILT EFFECT ON CARDS ============ */
+if (window.matchMedia('(hover:hover)').matches) {
+  document.querySelectorAll('.price-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      const isFeatured = card.classList.contains('featured');
+      const scale = isFeatured ? 'scale(1.05) ' : '';
+      card.style.transform = `${scale}translateY(-10px) rotateX(${-y*4}deg) rotateY(${x*4}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+/* ============ PARALLAX BLOBS ============ */
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  document.querySelectorAll('.blob').forEach((blob, i) => {
+    const speed = (i + 1) * 0.15;
+    blob.style.transform = `translateY(${scrolled * speed}px)`;
+  });
+}, { passive: true });
+
+/* ============ PREVENT BODY SCROLL DURING LOAD ============ */
+document.body.style.overflow = 'hidden';
+setTimeout(() => { document.body.style.overflow = ''; }, 900);
+</script>
+
+</body>
+</html>
